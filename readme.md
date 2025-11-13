@@ -1,30 +1,57 @@
 # Securent
 
-Make sure to have Java 17, Maven 3.8+, and Git installed:
+Make sure to have Java 17, Maven 3.8+, npm, and Git installed:
 
 ```
 java -version
 mvn -version
+npm --version
 git --version
 ```
 
 ---
 
-## Set Up
+## Clone the Repository
 
-### 1. Clone the repository
 ```
 git clone <your-git-repo-url>
-cd ASE_SMH_engR
+cd securent_V1
 ```
 
-### 2. Build the project using Maven
+---
+
+## Frontend
+
+### 1. Build using Maven
+
 ```
+cd frontend
+npm install
+```
+
+### 2. Run it locally
+
+Default port is `localhost:3000`
+
+```
+npm run dev
+```
+
+---
+
+## Backend
+
+### 1. Build using Maven
+
+```
+cd backend
 ./mvnw clean install
 ```
 
-### 3. Run the service locally
+### 2. Run the service locally
+
 Default port is `localhost:8080`
+
 ```
 ./mvnw spring-boot:run
 ```
@@ -43,11 +70,13 @@ curl -X POST http://localhost:8080/auth/login \
 ```
 
 should return
+
 ```
 ey_____ some jwt token
 ```
 
 Incorrect login:
+
 ```
 curl -X POST http://localhost:8080/auth/login \
   -H "Content-Type: application/json" \
@@ -88,6 +117,7 @@ curl -X POST http://localhost:8080/user/renter/new \
 ```
 
 should return
+
 ```
 {"id":1,"username":"newRenter","email":"renter@example.com","role":"RENTER"}
 ```
@@ -112,6 +142,7 @@ curl -X POST http://localhost:8080/user/agent/new \
 ```
 
 should return
+
 ```
 {"id":2,"username":"newAgent","email":"agent@example.com","role":"AGENT"}
 ```
@@ -128,20 +159,23 @@ curl -X POST http://localhost:8080/user/1/verify-email
 ```
 
 should return
+
 ```
 "To be connected to endpoint"
 ```
 
 ---
 
-## Testing & Style
+## Testing & Style (Backend only right now)
 
 Run tests:
+
 ```
 ./mvnw test
 ```
 
 Run style check:
+
 ```
 ./mvnw checkstyle:check
 ```
